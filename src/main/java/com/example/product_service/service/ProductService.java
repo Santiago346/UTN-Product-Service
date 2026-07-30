@@ -3,7 +3,6 @@ package com.example.product_service.service;
 import com.example.product_service.dtos.ProductDTO;
 import com.example.product_service.dtos.ProductRequestDTO;
 import com.example.product_service.exceptions.ProductNotFoundException;
-import com.example.product_service.exceptions.ProductoNotFoundException;
 import com.example.product_service.mapper.ProductMapper;
 import com.example.product_service.model.Product;
 import com.example.product_service.model.ProductType;
