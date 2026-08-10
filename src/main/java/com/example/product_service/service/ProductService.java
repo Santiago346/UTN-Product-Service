@@ -35,14 +35,12 @@ public class ProductService {
 
     public ProductDTO getProductoById(Long id) {
 
-        Product producto = repository.findById(id)
+        Product product = repository.findById(id)
                 .orElseThrow(() ->
-                        new ProductNotFoundException(
-                                "Producto no encontrado con id: " + id
-                        )
+                        new ProductNotFoundException(id)
                 );
 
-        return mapper.toResponse(producto);
+        return mapper.toResponse(product);
     }
 
 
@@ -75,46 +73,42 @@ public class ProductService {
 
     public ProductDTO addProducto(ProductRequestDTO request) {
 
-        Product producto = mapper.toEntity(request);
+        Product product = mapper.toEntity(request);
 
-        Product guardado = repository.save(producto);
+        Product savedProduct = repository.save(product);
 
-        return mapper.toResponse(guardado);
+        return mapper.toResponse(savedProduct);
     }
 
 
     public ProductDTO updateProducto(Long id, ProductRequestDTO request) {
 
-        Product producto = repository.findById(id)
-                .orElseThrow(() ->
-                        new ProductNotFoundException(
-                                "Producto no encontrado con id: " + id
-                        )
-                );
+        Product product = repository.findById(id)
+                .orElseThrow(() -> new ProductNotFoundException(id));
 
+        product.setTipo(request.getTipo());
+        product.setNombre(request.getNombre());
+        product.setDescripcion(request.getDescripcion());
+        product.setMontoAsociado(request.getMontoAsociado());
+        product.setTasaInteres(request.getTasaInteres());
+        product.setActivo(request.isActivo());
+        product.setFechaInicio(request.getFechaInicio());
+        product.setFechaVencimiento(request.getFechaVencimiento());
 
-        producto.setNombre(request.getNombre());
-        producto.setDescripcion(request.getDescripcion());
-        producto.setMontoAsociado(request.getMontoAsociado());
-        producto.setTasaInteres(request.getTasaInteres());
+        Product updatedProduct = repository.save(product);
 
-
-        Product actualizado = repository.save(producto);
-
-        return mapper.toResponse(actualizado);
+        return mapper.toResponse(updatedProduct);
     }
 
 
     public void deleteById(Long id) {
 
-        Product producto = repository.findById(id)
+        Product product = repository.findById(id)
                 .orElseThrow(() ->
-                        new ProductNotFoundException(
-                                "Producto no encontrado con id: " + id
-                        )
+                        new ProductNotFoundException(id)
                 );
 
-        repository.delete(producto);
+        repository.delete(product);
     }
 
 }

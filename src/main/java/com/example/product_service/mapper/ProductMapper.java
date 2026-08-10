@@ -10,7 +10,6 @@ public class ProductMapper {
 
     public ProductDTO toResponse(Product product) {
 
-        System.out.println(product.getNombre());
         ProductDTO response = new ProductDTO();
 
         response.setId(product.getId());

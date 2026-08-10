@@ -18,7 +18,7 @@ spring:
   application:
     name: product-service
   config:
-    import: optional:configserver:http://localhost:8888
+    import: configserver:http://localhost:8888
 ```
 
 ## Modelo de datos
