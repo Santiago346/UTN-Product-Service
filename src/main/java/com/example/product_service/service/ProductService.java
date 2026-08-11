@@ -91,7 +91,7 @@ public class ProductService {
         product.setDescripcion(request.getDescripcion());
         product.setMontoAsociado(request.getMontoAsociado());
         product.setTasaInteres(request.getTasaInteres());
-        product.setActivo(request.isActivo());
+product.setActivo(request.getActivo() != null ? request.getActivo() : product.isActivo());
         product.setFechaInicio(request.getFechaInicio());
         product.setFechaVencimiento(request.getFechaVencimiento());
 
