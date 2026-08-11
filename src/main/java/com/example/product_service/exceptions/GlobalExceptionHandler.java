@@ -22,14 +22,12 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler(HttpMessageNotReadableException.class)
     public ResponseEntity<ErrorResponse> handleMalformedJson(HttpMessageNotReadableException ex) {
-        log.warn("JSON mal formado: {}", ex.getMessage());
         ErrorResponse error = new ErrorResponse(HttpStatus.BAD_REQUEST.value(), "El cuerpo de la solicitud es inválido o está mal formado");
         return ResponseEntity.badRequest().body(error);
     }
 
     @ExceptionHandler(MethodArgumentTypeMismatchException.class)
     public ResponseEntity<ErrorResponse> handleTypeMismatch(MethodArgumentTypeMismatchException ex) {
-        log.warn("Parámetro inválido: {}", ex.getMessage());
         String mensaje = "El valor '" + ex.getValue() + "' no es válido para el parámetro '" + ex.getName() + "'";
         ErrorResponse error = new ErrorResponse(HttpStatus.BAD_REQUEST.value(), mensaje);
         return ResponseEntity.badRequest().body(error);
@@ -37,7 +35,6 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler(Exception.class)
     public ResponseEntity<ErrorResponse> handleGeneric(Exception ex) {
-        log.error("Error interno no controlado", ex);
         ErrorResponse error = new ErrorResponse(HttpStatus.INTERNAL_SERVER_ERROR.value(), "Ocurrió un error interno. Contacte al administrador.");
         return ResponseEntity.internalServerError().body(error);
     }
