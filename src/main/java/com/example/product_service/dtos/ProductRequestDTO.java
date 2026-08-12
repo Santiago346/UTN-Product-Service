@@ -17,6 +17,7 @@ public class ProductRequestDTO {
         private String descripcion;
         private BigDecimal montoAsociado;
         private BigDecimal tasaInteres;
+        private Boolean activo;
         private LocalDate fechaInicio;
         private LocalDate fechaVencimiento;
 

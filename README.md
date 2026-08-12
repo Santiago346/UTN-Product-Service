@@ -18,7 +18,7 @@ spring:
   application:
     name: product-service
   config:
-    import: optional:configserver:http://localhost:8888
+    import: configserver:http://localhost:8888
 ```
 
 ## Modelo de datos
@@ -30,8 +30,13 @@ spring:
 | Método | Endpoint | Descripción |
 |---|---|---|
 | GET | `/productos` | Lista todos los productos |
-| POST | `/productos` | Crea un producto nuevo |
+| GET | `/productos/{id}` | Obtiene un producto por id |
 | GET | `/productos/cliente/{clienteId}` | Lista los productos de un cliente puntual |
+| GET | `/productos/tipo/{tipo}` | Lista productos filtrados por tipo (`ProductType`) |
+| GET | `/productos/activos` | Lista los productos activos |
+| POST | `/productos` | Crea un producto nuevo |
+| PUT | `/productos/{id}` | Actualiza un producto existente (todos los campos editables) |
+| DELETE | `/productos/{id}` | Elimina un producto |
 
 ### Ejemplo — POST /productos
 
